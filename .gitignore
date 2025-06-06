@@ -11,3 +11,4 @@ yarn-error.log*
 
 # Development utilities
 setup.ps1
+.env

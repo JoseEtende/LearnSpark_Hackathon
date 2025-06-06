@@ -1,0 +1,11 @@
+{
+  "name": "learnspark-functions",
+  "version": "1.0.0",
+  "description": "Netlify Functions for LearnSpark",
+  "main": "index.js",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.0.0"
+  },
+  "author": "",
+  "license": "ISC"
+}

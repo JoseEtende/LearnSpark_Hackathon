@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 
 // This is the main handler for our Netlify serverless function.
-exports.handler = async function(event, context) {
+exports.handler = async function (event, context) {
     // We only allow POST requests to this function
     if (event.httpMethod !== 'POST') {
         return { statusCode: 405, body: 'Method Not Allowed' };
@@ -28,11 +28,11 @@ exports.handler = async function(event, context) {
             .from('videos')
             .update({ status: 'processing', error_message: null })
             .eq('id', videoId);
-        
+
         console.log(`Status for ${videoId} updated to 'processing'.`);
 
         // --- Core Logic Placeholder ---
-        // In a real app, this is where you'd call Whisper, do chunking, etc.
+        // In a real app, this is where you'd call Whisper, etc.
         // For now, we simulate success.
         console.log("Simulating transcription and embedding process...");
         // --- End Core Logic Placeholder ---
@@ -42,9 +42,9 @@ exports.handler = async function(event, context) {
             .from('videos')
             .update({ status: 'ready' })
             .eq('id', videoId);
-        
+
         console.log(`Processing for ${videoId} complete. Status set to 'ready'.`);
-        
+
         return {
             statusCode: 200,
             body: JSON.stringify({ message: `Successfully processed video ${videoId}` })
@@ -52,7 +52,6 @@ exports.handler = async function(event, context) {
 
     } catch (error) {
         console.error(`An error occurred during ingestion:`, error);
-        // In a real app, we would also update the video's status to 'failed' here.
         return {
             statusCode: 500,
             body: JSON.stringify({ error: error.message })

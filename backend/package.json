@@ -2,10 +2,9 @@
     "name": "learnspark-backend",
     "version": "1.0.0",
     "dependencies": {
-        "@supabase/supabase-js": "^2.0.0",
-        "axios": "^1.4.0",
-        "node-fetch": "^3.3.0",
-        "openai": "^4.0.0",
-        "uuid": "^9.0.0"
+        "@supabase/supabase-js": "2.42.0",
+        "axios": "1.6.8",
+        "openai": "4.40.0",
+        "uuid": "9.0.1"
     }
 }

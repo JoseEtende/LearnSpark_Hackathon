@@ -43,6 +43,7 @@ exports.handler = async function (event, context) {
         const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
         console.log("Sending audio to OpenAI Whisper...");
+        console.log("Type of audioResponse.data:", typeof audioResponse.data);
         const transcription = await openai.audio.transcriptions.create({
             file: audioResponse.data, // Use .data for the stream from axios
             model: 'whisper-1',

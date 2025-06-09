@@ -2,7 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 import { v4 as uuidv4 } from 'uuid'; // A library to generate unique IDs
 import fetch from 'node-fetch'; // To trigger our other function
 
-exports.handler = async function(event, context) {
+exports.handler = async function (event, context) {
     if (event.httpMethod !== 'POST') {
         return { statusCode: 405, body: 'Method Not Allowed' };
     }
@@ -47,10 +47,11 @@ exports.handler = async function(event, context) {
         // 2. Trigger the ingest-video function asynchronously
         // We do this by making an HTTP POST request to its URL.
         // This is a "fire-and-forget" call. We don't wait for it to finish.
-        const ingestionUrl = `${process.env.URL}/.netlify/functions/ingest-video`;
-        
+        //const ingestionUrl = `${process.env.URL}/.netlify/functions/ingest-video`;
+        const ingestionUrl = `${process.env.URL}/api/ingest-video`;
+
         console.log(`Triggering ingestion function at: ${ingestionUrl}`);
-        
+
         // We don't wait for this fetch to complete.
         fetch(ingestionUrl, {
             method: 'POST',

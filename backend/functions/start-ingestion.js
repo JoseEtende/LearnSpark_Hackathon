@@ -53,11 +53,28 @@ exports.handler = async function (event, context) {
         console.log(`Triggering ingestion function at: ${ingestionUrl}`);
 
         // We don't wait for this fetch to complete.
-        fetch(ingestionUrl, {
+        /*fetch(ingestionUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ videoId: videoId })
+        }); */
+
+        // We WILL wait for the fetch call to ensure it is sent before this function exits.
+        const triggerResponse = await fetch(ingestionUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ videoId: videoId })
         });
+
+        // Check if the trigger call itself was successful.
+        if (!triggerResponse.ok) {
+            // Log the error from the ingestion function if it failed immediately
+            const errorBody = await triggerResponse.text();
+            console.error(`Failed to trigger ingest-video function. Status: ${triggerResponse.status}. Body: ${errorBody}`);
+            throw new Error('Failed to start the video processing job.');
+        }
+
+        console.log('Successfully triggered ingest-video function.');
 
         // 3. Immediately return the new video ID to the user.
         return {

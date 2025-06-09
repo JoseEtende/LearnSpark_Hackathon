@@ -1,3 +1,5 @@
+# This is the corrected configuration for a monorepo deployment on Netlify.
+
 # Build settings for the entire project.
 [build]
   command = "npm run build"
@@ -7,17 +9,21 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# This is the NEW, specific rule for our API functions.
-# It tells Netlify to rewrite requests from /api/* to the functions directory.
-# This rule MUST come BEFORE the general /* rule.
+# API redirect rule
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
 
-# This is the general "catch-all" rule for our React frontend.
-# It makes sure refreshing pages works correctly.
+# SPA fallback rule
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+# ---- NEW SECTION ----
+# Per-function configuration.
+# This block specifically targets the 'ingest-video' function.
+[functions."ingest-video"]
+  # Override the default 10-second timeout for this function only.
+  timeout = 25

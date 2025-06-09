@@ -2,6 +2,8 @@
     "name": "learnspark-backend",
     "version": "1.0.0",
     "dependencies": {
-        "@supabase/supabase-js": "^2.0.0"
+        "@supabase/supabase-js": "^2.0.0",
+        "uuid": "^9.0.0",
+        "node-fetch": "^2.6.7"
     }
 }

@@ -1,21 +1,33 @@
-[build]
-  base = "frontend"
-  command = "npm run build"
-  publish = "dist"
+# This is the corrected configuration for a monorepo deployment on Netlify.
+# It tells Netlify to look at the entire project, not just the frontend.
 
+# Build settings for the entire project.
+[build]
+  # The command to run from the root directory.
+  # Our root package.json's "build" script correctly builds the frontend.
+  command = "npm run build"
+  
+  # The directory containing the serverless functions.
+  # Netlify will automatically discover them here.
+  functions = "backend/functions"
+  
+  # The directory containing the final, built frontend website assets.
+  publish = "frontend/dist"
+
+# Environment settings
 [build.environment]
   NODE_VERSION = "18"
 
-[functions]
-  directory = "backend/functions"
-
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-
+# Development server settings (for running `netlify dev` locally)
 [dev]
   command = "npm run dev"
   port = 3000
-  targetPort = 5173
+  targetPort = 5173 # The port Vite runs on
   framework = "#custom"
+
+# Redirect rule for Single Page Applications (SPAs).
+# This makes sure that refreshing a page like /dashboard/123 still works.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

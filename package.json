@@ -4,7 +4,8 @@
   "description": "A video quiz application with AI-powered chat",
   "private": true,
   "workspaces": [
-    "frontend"
+    "frontend",
+    "backend"
   ],
   "scripts": {
     "install:frontend": "cd frontend && npm install",

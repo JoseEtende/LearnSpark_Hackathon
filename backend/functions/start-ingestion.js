@@ -24,7 +24,7 @@ exports.handler = async function (event, context) {
         console.log(`Created video record for ${videoId}`);
 
         // Trigger the ingestion function
-        const ingestionUrl = `${process.env.URL}/api/ingest-video`;
+        const ingestionUrl = `${process.env.URL}/api/ingest-video-background`;
         const triggerResponse = await fetch(ingestionUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

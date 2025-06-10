@@ -21,9 +21,3 @@
   to = "/index.html"
   status = 200
 
-# ---- NEW SECTION ----
-# Per-function configuration.
-# This block specifically targets the 'ingest-video' function.
-[functions."ingest-video"]
-  # Override the default 10-second timeout for this function only.
-  timeout = 25

@@ -4,16 +4,13 @@
   "description": "A video quiz application with AI-powered chat",
   "private": true,
   "workspaces": [
-    "frontend",
-    "backend"
+    "frontend"
   ],
   "scripts": {
     "install:frontend": "cd frontend && npm install",
-    "install:backend": "cd backend && npm install",
-    "install:all": "npm run install:frontend && npm run install:backend",
+    "install:all": "npm run install:frontend",
     "dev:frontend": "cd frontend && npm run dev",
-    "dev:backend": "cd backend && npm start",
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev": "npm run dev:frontend",
     "build": "cd frontend && npm run build",
     "start": "npm run dev"
   },
